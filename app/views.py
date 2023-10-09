@@ -22,6 +22,36 @@ def addproduct(request):
     return redirect(request.META['HTTP_REFERER'])
 
 
+def confirmdeleteproduct(request, id):
+    product = Product.objects.get(id = id)
+    context = {'product': product}
+    return render (request,"confirmdelprod.html",context)
+
+
+def deleteproduct(request, id):
+    Product.objects.get(id = id).delete()
+    return redirect(productlistview)
+
+def edit_product_get(request, id):
+        product = Product.objects.get(id = id)
+        context = {'product': product}
+        return render (request,"edit_product.html",context)
+
+
+def edit_product_post(request, id):
+        item = Product.objects.get(id = id)
+        item.unitprice = request.POST['unitprice']
+        item.unitsinstock = request.POST['unitsinstock']
+        item.save()
+        return redirect(productlistview)
+
+def products_filtered(request, id):
+    productlist = Product.objects.all()
+    filteredproducts = productlist.filter(supplier = id)
+    context = {'products': filteredproducts}
+    return render (request,"productlist.html",context)
+
+
 
 
 #Supplier views
@@ -40,6 +70,23 @@ def addsupplier(request):
     f = request.POST['country']
     Supplier(companyname = a, contactname = b, addres = c, phone = d, email = e, country = f).save()
     return redirect(request.META['HTTP_REFERER'])
+
+def confirmdeletesupplier(request, id):
+    supplier = Supplier.objects.get(id = id)
+    context = {'supplier': supplier}
+    return render (request,"confirmdelsupp.html",context)
+
+
+def deletesupplier(request, id):
+    Supplier.objects.get(id = id).delete()
+    return redirect(supplierlistview)
+
+def searchsuppliers(request):
+    search = request.POST['search']
+    filtered = Supplier.objects.filter(companyname__icontains=search)
+    context = {'suppliers': filtered}
+    return render (request,"supplierlist.html",context)
+
 
 
 
