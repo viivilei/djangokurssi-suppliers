@@ -2,11 +2,16 @@ from django.urls import path
 
 from .views import landingview, productlistview, supplierlistview, addsupplier, addproduct, \
     deleteproduct, confirmdeleteproduct, deletesupplier, confirmdeletesupplier, edit_product_get, \
-    edit_product_post, searchsuppliers, products_filtered
+    edit_product_post, searchsuppliers, products_filtered, loginview, login_action, logout_action
 
 urlpatterns = [
-   path('', landingview),
+   #Landing page after login
+   path('landing/', landingview),
 
+   #Login view and authentication method
+   path('', loginview),
+   path('login/', login_action),
+   path('logout/', logout_action),
 
    path('products/', productlistview),
    path('add-product/', addproduct),
