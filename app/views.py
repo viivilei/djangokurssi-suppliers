@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Supplier, Product
+from .models import Supplier, Product, Customer
 from django.contrib.auth import authenticate, login, logout
 
 #tätä ei nyt sitten enää tarvita
@@ -119,6 +119,23 @@ def searchsuppliers(request):
     filtered = Supplier.objects.filter(companyname__icontains=search)
     context = {'suppliers': filtered}
     return render (request,"supplierlist.html",context)
+
+#Customer view
+
+def customerlistview(request):
+    customerlist = Customer.objects.all()
+    context = { 'customers': customerlist}
+    return render (request, "customerlist.html",context)
+
+def addcustomer(request):
+    a = request.POST['customername']
+    b = request.POST['contactname']
+    c = request.POST['address']
+    d = request.POST['phone']
+    e = request.POST['email']
+    f = request.POST['country']
+    Customer(customername = a, contactname = b, addres = c, phone = d, email = e, country = f).save()
+    return redirect(request.META['HTTP_REFERER'])
 
 
 

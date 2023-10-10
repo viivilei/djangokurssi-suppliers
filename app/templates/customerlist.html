@@ -6,37 +6,26 @@
 <div id ="add-div"></div>
 <br />
  
-<h1 style="color: darkviolet">Suppliers</h1>
+<h1 style="color: darkviolet">Customers</h1>
 
-<button id="add-btn" class="btn btn-success btn-sm" onclick="showaddform()">Add new supplier</button>
-
-
-
-<form method="post" action="/search-suppliers/">
-
-    {%csrf_token %}
-    <input class="card-text" class="card-text" type="text" placeholder="search" name="search">
-
-    <input type="submit" value="Search" class="btn btn-success btn-sm" name="">
-</form>
+<button id="add-btn" class="btn btn-success btn-sm" onclick="showaddform()">Add new customer</button>
 
 
-{% for s in suppliers %}
+
+{% for c in customers %}
 
 <div class="card" style="width: 50rem;">
 <div class="card body">
-    <h4 class="card title">{{s.companyname}}</h4>
-    <p class="card text">contact person: {{s.contactname}} | phone: {{s.phone}} | email: {{s.email}}</p>
-    <p class="card text">Address: {{s.addres}} | Country: {{s.country}}</p>
+    <h4 class="card title">{{c.customername}}</h4>
+    <p class="card text">contact person: {{c.contactname}} | phone: {{c.phone}} | email: {{c.email}}</p>
+    <p class="card text">Address: {{c.addres}} | Country: {{c.country}}</p>
 
     <a  href="/edit-supplier-get/{{s.id}}" class="btn btn-primary">Edit</a>
     <a  href="/confirm-delete-supplier/{{s.id}}" class="btn btn-danger">Delete</a>
-    <a href="/products-by-supplier/{{s.id}}" class="btn btn-secondary">{{s.companyname}} Products</a>
+    
 
 </div>
 </div>
-
-{% empty %}
 
 {%endfor%}
 
@@ -45,11 +34,11 @@ let x = `
 <h2 style="color: lightblue">Please fill in form</h2>
 <div class="card" style="width: 20rem;"> 
     <div class="card-body">
-        <form method="post" action="/add-supplier/">
+        <form method="post" action="/add-customer/">
 
             {% csrf_token %}
 
-            <input class="card-text" class="card-text" type="text" placeholder="company´s name" name="companyname">
+            <input class="card-text" class="card-text" type="text" placeholder="customer name" name="customername">
                 <input class="card-text" type="text" placeholder="contact person" name="contactname">
                 <input class="card-text" type="text" placeholder="address" name="address">
                 <input class="card-text" type="text" placeholder="phone" name="phone">

@@ -22,3 +22,14 @@ class Product(models.Model):
 
     def __str__(self):
         return f"{self.productname} produced by {self.supplier.companyname}"
+    
+class Customer(models.Model):
+    customername = models.CharField(max_length = 50, default="asiakas")
+    contactname = models.CharField(max_length = 50, default="asiakas")
+    addres = models.CharField(max_length = 100, default="asiakas")
+    phone = models.CharField(max_length = 20, default="asiakas")
+    email = models.CharField(max_length = 50, default="asiakas")
+    country = models.CharField(max_length = 50, default="asiakas")
+    #allaolevan voi tehdä, jos haluaa että admin sivu toimii myöhemmin paremmin:
+    def __str__(self):
+        return f"{self.customername} from {self.country}"

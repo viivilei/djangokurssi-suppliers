@@ -2,7 +2,8 @@ from django.urls import path
 
 from .views import landingview, productlistview, supplierlistview, addsupplier, addproduct, \
     deleteproduct, confirmdeleteproduct, deletesupplier, confirmdeletesupplier, edit_product_get, \
-    edit_product_post, searchsuppliers, products_filtered, loginview, login_action, logout_action
+    edit_product_post, searchsuppliers, products_filtered, loginview, login_action, logout_action, \
+    customerlistview, addcustomer
 
 urlpatterns = [
    #Landing page after login
@@ -26,6 +27,9 @@ urlpatterns = [
    path('add-supplier/', addsupplier),
    path('delete-supplier/<int:id>/', deletesupplier),
    path('confirm-delete-supplier/<int:id>/', confirmdeletesupplier),
-   path('search-suppliers/', searchsuppliers)
+   path('search-suppliers/', searchsuppliers),
+
+   path('customers/', customerlistview),
+   path('add-customer/', addcustomer)
 
 ]
