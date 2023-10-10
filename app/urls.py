@@ -3,7 +3,7 @@ from django.urls import path
 from .views import landingview, productlistview, supplierlistview, addsupplier, addproduct, \
     deleteproduct, confirmdeleteproduct, deletesupplier, confirmdeletesupplier, edit_product_get, \
     edit_product_post, searchsuppliers, products_filtered, loginview, login_action, logout_action, \
-    customerlistview, addcustomer
+    customerlistview, addcustomer, storelistview, addstore
 
 urlpatterns = [
    #Landing page after login
@@ -30,6 +30,9 @@ urlpatterns = [
    path('search-suppliers/', searchsuppliers),
 
    path('customers/', customerlistview),
-   path('add-customer/', addcustomer)
+   path('add-customer/', addcustomer),
+
+   path('stores/', storelistview),
+   path('add-store/', addstore)
 
 ]

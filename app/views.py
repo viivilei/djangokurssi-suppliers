@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Supplier, Product, Customer
+from .models import Supplier, Product, Customer, Store
 from django.contrib.auth import authenticate, login, logout
 
 #tätä ei nyt sitten enää tarvita
@@ -138,5 +138,20 @@ def addcustomer(request):
     return redirect(request.META['HTTP_REFERER'])
 
 
+#Store view
 
+def storelistview(request):
+    storelist = Store.objects.all()
+    context = { 'stores': storelist}
+    return render (request, "storelist.html",context)
+
+def addstore(request):
+    a = request.POST['storename']
+    b = request.POST['contactname']
+    c = request.POST['address']
+    d = request.POST['phone']
+    e = request.POST['email']
+    f = request.POST['country']
+    Store(storename = a, contactname = b, addres = c, phone = d, email = e, country = f).save()
+    return redirect(request.META['HTTP_REFERER'])
 

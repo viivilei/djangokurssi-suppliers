@@ -1,0 +1,82 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<br />
+<!-- Lisäyslomakkeen paikka -->
+<div id="add-div"></div>
+<br />
+
+<h1>Stores</h1>
+
+<a onclick="showaddform()" class="btn btn-primary">Add new store</a>
+
+{% for s in stores %}
+
+<div class="card" style="width: 50rem;">
+    <div class="card-body">
+        <h3 class="card-title">{{s.storename}} </h3>
+        <h5 class="card-text">Contact person: {{s.contactname}} | phone: {{s.phone}}</h5>
+        <p class="card-text">adress: {{s.addres}} | country: {{s.country}}</p>
+
+        <a href="/edit-product-get/{{p.id}}/" class="btn btn-primary">Edit</a>
+
+        <a href="/confirm-delete-product/{{p.id}}/" class="btn btn-danger">Delete</a>
+
+        <a href="/products-by-supplier/{{p.supplier.id}}/" class="btn btn-secondary">{{p.supplier.companyname}}´s all
+            Products</a>
+
+    </div>
+</div>
+
+
+
+{% empty %}
+
+<div class="card" style="width: 50rem;">
+    <div class="card-body">
+        <p class="card-text">No stores found in the database </p>
+    </div>
+</div>
+
+{%endfor%}
+
+
+<script>
+
+    let y = `
+    <h2 style="color: darkorange;">Please fill in form</h2>
+    
+    <div class="card" style="width: 20rem;">
+        <div class="card-body">
+            <form method="post" action="/add-store/">
+                {%csrf_token %}
+                <input class="card-text" class="card-text" type="text" placeholder="store name" name="storename">
+                <input class="card-text" type="text" placeholder="contact name" name="contactname">
+                <input class="card-text" type="text" placeholder="address" name="address">
+                <input class="card-text" type="text" placeholder="phone" name="phone">
+                <input class="card-text" type="text" placeholder="email" name="email">
+                <input class="card-text" type="text" placeholder="country" name="country">
+                <br />
+                
+                  
+        
+
+                <br/>
+                <input type="submit" value="Confirm" class="btn btn-success btn-sm" name="">
+                <input type="submit" id="hide-btn" class="btn btn-secondary btn-sm" onclick="hideaddform()" value="Cancel" name="">
+            </form>
+        </div>
+    </div>`
+
+    function showaddform() {
+        document.getElementById("add-div").innerHTML = y
+    }
+
+    function hideaddform() {
+        document.getElementById("add-div").innerHTML = ""
+    }
+
+</script>
+
+{% endblock %}

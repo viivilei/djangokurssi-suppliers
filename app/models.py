@@ -33,3 +33,15 @@ class Customer(models.Model):
     #allaolevan voi tehdä, jos haluaa että admin sivu toimii myöhemmin paremmin:
     def __str__(self):
         return f"{self.customername} from {self.country}"
+    
+class Store(models.Model):
+    storename = models.CharField(max_length = 20, default="kauppa")
+    contactname = models.CharField(max_length = 50, default="kauppa")
+    addres = models.CharField(max_length = 100, default="kauppa")
+    phone = models.CharField(max_length = 20, default="kauppa")
+    email = models.CharField(max_length = 50, default="kauppa")
+    country = models.CharField(max_length = 50, default="kauppa")
+    
+
+    def __str__(self):
+        return f"{self.storename} from {self.country}"
