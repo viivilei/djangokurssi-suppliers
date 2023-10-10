@@ -137,6 +137,19 @@ def addcustomer(request):
     Customer(customername = a, contactname = b, addres = c, phone = d, email = e, country = f).save()
     return redirect(request.META['HTTP_REFERER'])
 
+def edit_customer_get(request, id):
+        customer = Customer.objects.get(id = id)
+        context = {'customer': customer}
+        return render (request,"edit_customer.html",context)
+
+
+def edit_customer_post(request, id):
+        item = Customer.objects.get(id = id)
+        item.phone = request.POST['phone']
+        item.addres = request.POST['address']
+        item.save()
+        return redirect(customerlistview)
+
 
 #Store view
 

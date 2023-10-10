@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from app.models import Supplier, Product, Customer
+from app.models import Supplier, Product, Customer, Store
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     pass
@@ -13,3 +13,6 @@ class SupplierAdmin(admin.ModelAdmin):
 class CustomerAdmin(admin.ModelAdmin):
     pass
 
+@admin.register(Store)
+class StoreAdmin(admin.ModelAdmin):
+    pass
