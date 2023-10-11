@@ -120,6 +120,19 @@ def searchsuppliers(request):
     context = {'suppliers': filtered}
     return render (request,"supplierlist.html",context)
 
+def edit_supplier_get(request, id):
+        supplier = Supplier.objects.get(id = id)
+        context = {'supplier': supplier}
+        return render (request,"edit_supplier.html",context)
+
+
+def edit_supplier_post(request, id):
+        item = Supplier.objects.get(id = id)
+        item.phone = request.POST['phone']
+        item.addres = request.POST['address']
+        item.save()
+        return redirect(supplierlistview)
+
 #Customer view
 
 def customerlistview(request):
@@ -150,6 +163,16 @@ def edit_customer_post(request, id):
         item.save()
         return redirect(customerlistview)
 
+def confirmdeletecustomer(request, id):
+    customer = Customer.objects.get(id = id)
+    context = {'customer': customer}
+    return render (request,"confirmdelcust.html",context)
+
+
+def deletecustomer(request, id):
+    Customer.objects.get(id = id).delete()
+    return redirect(customerlistview)
+
 
 #Store view
 
@@ -167,4 +190,26 @@ def addstore(request):
     f = request.POST['country']
     Store(storename = a, contactname = b, addres = c, phone = d, email = e, country = f).save()
     return redirect(request.META['HTTP_REFERER'])
+
+def edit_store_get(request, id):
+        store = Store.objects.get(id = id)
+        context = {'store': store}
+        return render (request,"edit_store.html",context)
+
+
+def edit_store_post(request, id):
+        item = Store.objects.get(id = id)
+        item.contactname = request.POST['contactname']
+        item.save()
+        return redirect(storelistview)
+
+def confirmdeletestore(request, id):
+    store = Store.objects.get(id = id)
+    context = {'store': store}
+    return render (request,"confirmdelsto.html",context)
+
+
+def deletestore(request, id):
+    Store.objects.get(id = id).delete()
+    return redirect(storelistview)
 

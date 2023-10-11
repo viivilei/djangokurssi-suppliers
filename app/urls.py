@@ -3,7 +3,9 @@ from django.urls import path
 from .views import landingview, productlistview, supplierlistview, addsupplier, addproduct, \
     deleteproduct, confirmdeleteproduct, deletesupplier, confirmdeletesupplier, edit_product_get, \
     edit_product_post, searchsuppliers, products_filtered, loginview, login_action, logout_action, \
-    customerlistview, addcustomer, storelistview, addstore, edit_customer_get, edit_customer_post
+    customerlistview, addcustomer, storelistview, addstore, edit_customer_get, edit_customer_post, \
+    edit_supplier_get, edit_supplier_post, edit_store_get, edit_store_post, deletecustomer, \
+    confirmdeletecustomer, deletestore, confirmdeletestore
 
 urlpatterns = [
    #Landing page after login
@@ -28,14 +30,22 @@ urlpatterns = [
    path('delete-supplier/<int:id>/', deletesupplier),
    path('confirm-delete-supplier/<int:id>/', confirmdeletesupplier),
    path('search-suppliers/', searchsuppliers),
+   path('edit-supplier-get/<int:id>/', edit_supplier_get),
+   path('edit-supplier-post/<int:id>/', edit_supplier_post), 
 
    path('customers/', customerlistview),
    path('add-customer/', addcustomer),
    path('edit-customer-get/<int:id>/', edit_customer_get),
    path('edit-customer-post/<int:id>/', edit_customer_post), 
+   path('delete-customer/<int:id>/', deletecustomer),
+   path('confirm-delete-customer/<int:id>/', confirmdeletecustomer),
 
    path('stores/', storelistview),
-   path('add-store/', addstore)
+   path('add-store/', addstore),
+   path('edit-store-get/<int:id>/', edit_store_get),
+   path('edit-store-post/<int:id>/', edit_store_post),
+   path('delete-store/<int:id>/', deletestore),
+   path('confirm-delete-store/<int:id>/', confirmdeletestore),
    
 
 ]

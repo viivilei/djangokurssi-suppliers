@@ -19,12 +19,9 @@
         <h5 class="card-text">Contact person: {{s.contactname}} | phone: {{s.phone}}</h5>
         <p class="card-text">adress: {{s.addres}} | country: {{s.country}}</p>
 
-        <a href="/edit-product-get/{{p.id}}/" class="btn btn-primary">Edit</a>
+        <a href="/edit-store-get/{{s.id}}/" class="btn btn-primary">Edit</a>
 
-        <a href="/confirm-delete-product/{{p.id}}/" class="btn btn-danger">Delete</a>
-
-        <a href="/products-by-supplier/{{p.supplier.id}}/" class="btn btn-secondary">{{p.supplier.companyname}}´s all
-            Products</a>
+        <a href="/confirm-delete-store/{{s.id}}/" class="btn btn-danger">Delete</a>
 
     </div>
 </div>
