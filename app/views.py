@@ -56,9 +56,12 @@ def addproduct(request):
 
 
 def confirmdeleteproduct(request, id):
-    product = Product.objects.get(id = id)
-    context = {'product': product}
-    return render (request,"confirmdelprod.html",context)
+    if not request.user.is_authenticated:
+        return render(request, 'loginpage.html')
+    else:
+        product = Product.objects.get(id = id)
+        context = {'product': product}
+        return render (request,"confirmdelprod.html",context)
 
 
 def deleteproduct(request, id):
@@ -66,6 +69,9 @@ def deleteproduct(request, id):
     return redirect(productlistview)
 
 def edit_product_get(request, id):
+    if not request.user.is_authenticated:
+        return render(request, 'loginpage.html')
+    else:
         product = Product.objects.get(id = id)
         context = {'product': product}
         return render (request,"edit_product.html",context)
@@ -89,9 +95,12 @@ def products_filtered(request, id):
 
 #Supplier views
 def supplierlistview(request):
-    supplierlist = Supplier.objects.all()
-    context = { 'suppliers': supplierlist}
-    return render (request, "supplierlist.html",context)
+    if not request.user.is_authenticated:
+        return render(request, 'loginpage.html')
+    else:
+        supplierlist = Supplier.objects.all()
+        context = { 'suppliers': supplierlist}
+        return render (request, "supplierlist.html",context)
 
 
 def addsupplier(request):
@@ -105,9 +114,12 @@ def addsupplier(request):
     return redirect(request.META['HTTP_REFERER'])
 
 def confirmdeletesupplier(request, id):
-    supplier = Supplier.objects.get(id = id)
-    context = {'supplier': supplier}
-    return render (request,"confirmdelsupp.html",context)
+    if not request.user.is_authenticated:
+        return render(request, 'loginpage.html')
+    else:
+        supplier = Supplier.objects.get(id = id)
+        context = {'supplier': supplier}
+        return render (request,"confirmdelsupp.html",context)
 
 
 def deletesupplier(request, id):
@@ -121,6 +133,9 @@ def searchsuppliers(request):
     return render (request,"supplierlist.html",context)
 
 def edit_supplier_get(request, id):
+    if not request.user.is_authenticated:
+        return render(request, 'loginpage.html')
+    else:
         supplier = Supplier.objects.get(id = id)
         context = {'supplier': supplier}
         return render (request,"edit_supplier.html",context)
@@ -133,12 +148,15 @@ def edit_supplier_post(request, id):
         item.save()
         return redirect(supplierlistview)
 
-#Customer view
+#Customer views
 
 def customerlistview(request):
-    customerlist = Customer.objects.all()
-    context = { 'customers': customerlist}
-    return render (request, "customerlist.html",context)
+    if not request.user.is_authenticated:
+        return render(request, 'loginpage.html')
+    else:
+        customerlist = Customer.objects.all()
+        context = { 'customers': customerlist}
+        return render (request, "customerlist.html",context)
 
 def addcustomer(request):
     a = request.POST['customername']
@@ -151,6 +169,9 @@ def addcustomer(request):
     return redirect(request.META['HTTP_REFERER'])
 
 def edit_customer_get(request, id):
+    if not request.user.is_authenticated:
+        return render(request, 'loginpage.html')
+    else:
         customer = Customer.objects.get(id = id)
         context = {'customer': customer}
         return render (request,"edit_customer.html",context)
@@ -164,9 +185,12 @@ def edit_customer_post(request, id):
         return redirect(customerlistview)
 
 def confirmdeletecustomer(request, id):
-    customer = Customer.objects.get(id = id)
-    context = {'customer': customer}
-    return render (request,"confirmdelcust.html",context)
+    if not request.user.is_authenticated:
+        return render(request, 'loginpage.html')
+    else:
+        customer = Customer.objects.get(id = id)
+        context = {'customer': customer}
+        return render (request,"confirmdelcust.html",context)
 
 
 def deletecustomer(request, id):
@@ -174,12 +198,15 @@ def deletecustomer(request, id):
     return redirect(customerlistview)
 
 
-#Store view
+#Store views
 
 def storelistview(request):
-    storelist = Store.objects.all()
-    context = { 'stores': storelist}
-    return render (request, "storelist.html",context)
+    if not request.user.is_authenticated:
+        return render(request, 'loginpage.html')
+    else:
+        storelist = Store.objects.all()
+        context = { 'stores': storelist}
+        return render (request, "storelist.html",context)
 
 def addstore(request):
     a = request.POST['storename']
@@ -192,6 +219,9 @@ def addstore(request):
     return redirect(request.META['HTTP_REFERER'])
 
 def edit_store_get(request, id):
+    if not request.user.is_authenticated:
+        return render(request, 'loginpage.html')
+    else:
         store = Store.objects.get(id = id)
         context = {'store': store}
         return render (request,"edit_store.html",context)
@@ -204,9 +234,12 @@ def edit_store_post(request, id):
         return redirect(storelistview)
 
 def confirmdeletestore(request, id):
-    store = Store.objects.get(id = id)
-    context = {'store': store}
-    return render (request,"confirmdelsto.html",context)
+    if not request.user.is_authenticated:
+        return render(request, 'loginpage.html')
+    else:
+        store = Store.objects.get(id = id)
+        context = {'store': store}
+        return render (request,"confirmdelsto.html",context)
 
 
 def deletestore(request, id):
